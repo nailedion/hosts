@@ -1,7 +1,6 @@
 #!/bin/bash
 
-ip="$1"
-ok=1
+ip="$2"
 
 ip_1=`echo "$ip" | awk -F'.' '{print $1}'`
 ip_2=`echo "$ip" | awk -F'.' '{print $2}'`
@@ -17,5 +16,10 @@ for i in 1 2 3 4; do
 	fi
 done
 
-echo "Este bun"
+if [ "$(nslookup "$1" | grep "$2")" != "" ]; then
+	echo "E bine"
+else
+	echo "Nu e bine"
+fi
 
+exit 0
